@@ -135,6 +135,7 @@ public class GUI_Principal extends javax.swing.JFrame {
                 Resultado.setText("");
                 res = cc.consumirApi(url, method);
                 Resultado.setText(res);
+                Resultado.setCaretPosition(0);
             } catch (IOException ex) {
                 Logger.getLogger(GUI_Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
