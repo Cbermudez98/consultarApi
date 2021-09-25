@@ -28,6 +28,8 @@ public class GUI_Principal extends javax.swing.JFrame {
         this.setTitle("Consumir API");
         Resultado.setEditable(false);
         consultar_btn.setCursor(new Cursor(HAND_CURSOR));
+        LoadList();
+        METHOD.setCursor(new Cursor(HAND_CURSOR));
     }
 
     /**
@@ -44,8 +46,8 @@ public class GUI_Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         Url = new javax.swing.JTextField();
-        Method = new javax.swing.JTextField();
         consultar_btn = new javax.swing.JButton();
+        METHOD = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,15 +58,6 @@ public class GUI_Principal extends javax.swing.JFrame {
         jLabel1.setText("URL");
 
         jLabel2.setText("METHOD");
-
-        Method.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                MethodKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                MethodKeyTyped(evt);
-            }
-        });
 
         consultar_btn.setText("Consultar");
         consultar_btn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,8 +90,8 @@ public class GUI_Principal extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addGap(24, 24, 24)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Url, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Method, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(METHOD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Url, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(consultar_btn))
                         .addGap(0, 418, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -115,10 +108,10 @@ public class GUI_Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(Method, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(METHOD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(consultar_btn)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -127,8 +120,9 @@ public class GUI_Principal extends javax.swing.JFrame {
     private void consultar_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultar_btnActionPerformed
         // TODO add your handling code here:
         String res;
+        Resultado.setForeground(Color.BLACK);
         String url = Url.getText().trim();
-        String method = Method.getText().trim();
+        String method = METHOD.getSelectedItem().toString();
         ConsumirController cc = new ConsumirController();
         if (!url.equals("") && !method.equals("")) {
             try {
@@ -138,22 +132,21 @@ public class GUI_Principal extends javax.swing.JFrame {
                 Resultado.setCaretPosition(0);
             } catch (IOException ex) {
                 Logger.getLogger(GUI_Principal.class.getName()).log(Level.SEVERE, null, ex);
+                Resultado.setText("Error-> "+ex.getMessage());
+                Resultado.setForeground(Color.red);
             }
         } else {
             JOptionPane.showMessageDialog(null,"Faltan datos por llenar","ERROR",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_consultar_btnActionPerformed
-
-    private void MethodKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MethodKeyTyped
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_MethodKeyTyped
-
-    private void MethodKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MethodKeyReleased
-        // TODO add your handling code here:
-        Method.setText(Method.getText().toUpperCase());
-    }//GEN-LAST:event_MethodKeyReleased
-
+    
+    public void LoadList(){
+        METHOD.addItem("");
+        METHOD.addItem("GET");
+        METHOD.addItem("POST");
+        METHOD.addItem("PUT");
+        METHOD.addItem("DELETE");
+    }
     private void consultar_btnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultar_btnMouseEntered
         // TODO add your handling code here:
         consultar_btn.setBackground(Color.decode("#2679DB"));
@@ -205,7 +198,7 @@ public class GUI_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Method;
+    private javax.swing.JComboBox<String> METHOD;
     private javax.swing.JTextArea Resultado;
     private javax.swing.JTextField Url;
     private javax.swing.JButton consultar_btn;

@@ -36,8 +36,8 @@
                               </Group>
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="Url" min="-2" pref="171" max="-2" attributes="0"/>
-                                  <Component id="Method" min="-2" pref="62" max="-2" attributes="0"/>
+                                  <Component id="METHOD" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Url" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="consultar_btn" min="-2" max="-2" attributes="0"/>
@@ -62,11 +62,11 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Method" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="METHOD" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="consultar_btn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -99,12 +99,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="Url">
     </Component>
-    <Component class="javax.swing.JTextField" name="Method">
-      <Events>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MethodKeyReleased"/>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="MethodKeyTyped"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="consultar_btn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar"/>
@@ -114,6 +108,16 @@
         <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="consultar_btnMouseExited"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultar_btnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="METHOD">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
